@@ -18,11 +18,13 @@ export async function POST(request: Request) {
         const mailOptions = {
             from: `"${process.env.MAIL_FROM_NAME}" <${process.env.MAIL_FROM_ADDRESS}>`,
             to: process.env.MAIL_FROM_ADDRESS, // Send to self
-            replyTo: email,
+            // replyTo: email, // Commented out to avoid SPF/DMARC issues for now
             subject: `Nuovo messaggio da ${name} - DeBrand Studio`,
             text: `
+        Nuovo messaggio dal sito web:
+        
         Nome: ${name}
-        Email: ${email}
+        Email del visitatore: ${email}
         Azienda: ${company || 'N/A'}
         
         Messaggio:
@@ -31,7 +33,7 @@ export async function POST(request: Request) {
             html: `
         <h3>Nuovo messaggio dal sito web</h3>
         <p><strong>Nome:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Email del visitatore:</strong> ${email}</p>
         <p><strong>Azienda:</strong> ${company || 'N/A'}</p>
         <br>
         <p><strong>Messaggio:</strong></p>
