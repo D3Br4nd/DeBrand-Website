@@ -6,13 +6,14 @@ import { Metadata } from "next";
 export const dynamic = 'force-dynamic';
 
 interface Props {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const post = await getPostBySlug(params.slug);
+    const { slug } = await params;
+    const post = await getPostBySlug(slug);
 
     if (!post) {
         return {
@@ -21,14 +22,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     return {
-        title: post.seo?.title || post.title,
-        description: post.seo?.metaDesc || post.excerpt,
+        title: post.title,
+        description: post.excerpt,
     };
 }
 
 export default async function BlogPost({ params }: Props) {
-    console.log('Fetching post for slug:', params.slug);
-    const post = await getPostBySlug(params.slug);
+    const { slug } = await params;
+    console.log('Fetching post for slug:', slug);
+    const post = await getPostBySlug(slug);
     console.log('Post result:', post ? 'Found' : 'Not Found');
 
     if (!post) {

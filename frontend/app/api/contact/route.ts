@@ -5,14 +5,25 @@ export async function POST(request: Request) {
     try {
         const { name, email, company, message } = await request.json();
 
+        // Log configuration for debugging (without sensitive data)
+        console.log('Email config:', {
+            host: process.env.MAIL_HOST,
+            port: process.env.MAIL_PORT,
+            from: process.env.MAIL_FROM_ADDRESS,
+            encryption: process.env.MAIL_ENCRYPTION || 'ssl'
+        });
+
         const transporter = nodemailer.createTransport({
             host: process.env.MAIL_HOST,
             port: Number(process.env.MAIL_PORT),
-            secure: true, // Port 465 requires secure: true
+            secure: true, // true for port 465 (SSL), false for 587 (STARTTLS)
             auth: {
                 user: process.env.MAIL_USERNAME,
                 pass: process.env.MAIL_PASSWORD,
             },
+            tls: {
+                rejectUnauthorized: false // Allow self-signed certificates if needed
+            }
         });
 
         const mailOptions = {

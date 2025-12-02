@@ -62,9 +62,9 @@ services:
       - MAIL_PORT=465
       - MAIL_USERNAME=info@debrandstudio.it
       - MAIL_PASSWORD=M@ss1n078
-      - MAIL_ENCRYPTION=tls
+      - MAIL_ENCRYPTION=ssl
       - MAIL_FROM_ADDRESS=info@debrandstudio.it
-      - MAIL_FROM_NAME=Zone14
+      - MAIL_FROM_NAME=DeBrand Studio
     networks:
       - debrand_network
     restart: unless-stopped
