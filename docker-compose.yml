@@ -1,10 +1,10 @@
 services:
-  debrand_backend_www:
+  wordpress:
     build: .
     container_name: debrand_backend_www
     environment:
       # FrankenPHP Configuration
-      - FRANKENPHP_CONFIG=worker ./public/index.php
+      # - FRANKENPHP_CONFIG=worker ./public/index.php
 
       # WordPress Configuration
       - WORDPRESS_DB_HOST=${DB_HOST}
@@ -36,7 +36,7 @@ services:
       - debrand_network
     restart: unless-stopped
 
-  debrand_frontend_www:
+  frontend:
     build:
       context: ./frontend
       args:
