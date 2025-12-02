@@ -1,4 +1,11 @@
 import { cn } from "@/lib/utils";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
 
 export const BentoGrid = ({
     className,
@@ -10,7 +17,7 @@ export const BentoGrid = ({
     return (
         <div
             className={cn(
-                "grid md:auto-rows-[20rem] grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto",
+                "grid md:auto-rows-[20rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto",
                 className
             )}
         >
@@ -33,28 +40,24 @@ export const BentoGridItem = ({
     icon?: React.ReactNode;
 }) => {
     return (
-        <div
+        <Card
             className={cn(
-                "row-span-1 rounded-xl group/bento transition duration-200 p-6 justify-between flex flex-col space-y-4",
-                "bg-card/50 border",
-                "hover:border-primary/50 hover:shadow-md",
+                "row-span-1 group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none border-transparent dark:!border-white/10 dark:!bg-neutral-900 justify-between flex flex-col space-y-4",
                 className
             )}
         >
-            <div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-100 dark:from-neutral-900 dark:to-neutral-800 to-neutral-50 overflow-hidden relative group-hover/bento:scale-[1.02] transition-transform duration-200">
+            <CardHeader className="p-0">
                 {header}
-            </div>
-            <div className="group-hover/bento:translate-x-2 transition duration-200">
-                <div className="mb-2 text-primary group-hover/bento:scale-110 origin-left transition-transform duration-200">
-                    {icon}
-                </div>
-                <div className="font-sans font-bold text-neutral-800 dark:!text-white mb-2 text-lg">
+            </CardHeader>
+            <CardContent className="p-4 group-hover/bento:translate-x-2 transition duration-200">
+                {icon}
+                <CardTitle className="font-bold mb-2 mt-2">
                     {title}
-                </div>
-                <div className="font-sans font-normal text-neutral-600 text-sm dark:text-neutral-300 leading-relaxed">
+                </CardTitle>
+                <CardDescription className="font-normal text-xs text-muted-foreground">
                     {description}
-                </div>
-            </div>
-        </div>
+                </CardDescription>
+            </CardContent>
+        </Card>
     );
 };

@@ -7,6 +7,7 @@ import { Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
+import { ThemeLogo } from "@/components/theme-logo"
 import {
     Sheet,
     SheetContent,
@@ -28,6 +29,7 @@ export function Navbar() {
             <div className="container mx-auto px-4 flex h-16 items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Link href="/" className="flex items-center space-x-2">
+                        <ThemeLogo className="h-10 w-auto" />
                         <span className="text-xl font-bold tracking-tight">
                             DeBrand <span className="text-primary">Studio</span>
                         </span>
