@@ -1,34 +1,36 @@
 services:
   wordpress:
-    build: ./backend
+    image: dunglas/frankenphp:latest-php8.3-alpine
     container_name: debrand_backend_www
     environment:
-      # FrankenPHP Configuration
-      # - FRANKENPHP_CONFIG=worker ./public/index.php
-      - SERVER_NAME=:80
+      # --- FRANKENPHP CONFIG (Sintassi Map per sicurezza spazi) ---
+      SERVER_NAME: ":80"
+      FRANKENPHP_CONFIG: "worker ./index.php"
+      MAX_REQUESTS: "500"
+      TRUSTED_PROXIES: "127.0.0.1,172.16.0.0/12,10.0.0.0/8"
 
-      # WordPress Configuration
-      - WORDPRESS_DB_HOST=${DB_HOST}
-      - WORDPRESS_DB_USER=${DB_USER}
-      - WORDPRESS_DB_PASSWORD=${DB_PASSWORD}
-      - WORDPRESS_DB_NAME=${DB_NAME}
-      - WORDPRESS_TABLE_PREFIX=${DB_PREFIX:-wp_}
-      - WORDPRESS_DEBUG=${WP_DEBUG:-false}
+      # --- WP CONFIG ---
+      WORDPRESS_DB_HOST: ${DB_HOST}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_TABLE_PREFIX: ${DB_PREFIX:-wp_}
+      WORDPRESS_DEBUG: ${WP_DEBUG:-false}
 
-      # Redis Configuration (if using a plugin like Redis Object Cache)
-      - WP_REDIS_HOST=${REDIS_HOST}
-      - WP_REDIS_PORT=${REDIS_PORT:-6379}
-      - WP_REDIS_DATABASE=${REDIS_DATABASE:-0}
+      # --- REDIS CONFIG ---
+      WP_REDIS_HOST: ${REDIS_HOST}
+      WP_REDIS_PORT: ${REDIS_PORT:-6379}
+      WP_REDIS_DATABASE: ${REDIS_DATABASE:-0}
 
-      # Salts and Keys (Should be set in .env)
-      - AUTH_KEY=${AUTH_KEY}
-      - SECURE_AUTH_KEY=${SECURE_AUTH_KEY}
-      - LOGGED_IN_KEY=${LOGGED_IN_KEY}
-      - NONCE_KEY=${NONCE_KEY}
-      - AUTH_SALT=${AUTH_SALT}
-      - SECURE_AUTH_SALT=${SECURE_AUTH_SALT}
-      - LOGGED_IN_SALT=${LOGGED_IN_SALT}
-      - NONCE_SALT=${NONCE_SALT}
+      # --- KEYS & SALTS ---
+      AUTH_KEY: ${AUTH_KEY}
+      SECURE_AUTH_KEY: ${SECURE_AUTH_KEY}
+      LOGGED_IN_KEY: ${LOGGED_IN_KEY}
+      NONCE_KEY: ${NONCE_KEY}
+      AUTH_SALT: ${AUTH_SALT}
+      SECURE_AUTH_SALT: ${SECURE_AUTH_SALT}
+      LOGGED_IN_SALT: ${LOGGED_IN_SALT}
+      NONCE_SALT: ${NONCE_SALT}
 
     volumes:
       - ./backend/wordpress:/app/public
@@ -46,6 +48,7 @@ services:
     container_name: debrand_frontend_www
     environment:
       - NEXT_PUBLIC_WORDPRESS_API_URL=https://www.debrandstudio.it/graphql
+      - WORDPRESS_API_URL_INTERNAL=http://wordpress:80/graphql
     networks:
       - debrand_network
     restart: unless-stopped
