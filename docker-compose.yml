@@ -33,13 +33,13 @@ services:
       NONCE_SALT: ${NONCE_SALT}
 
       # --- SMTP CONFIG ---
-      SMTP_HOST: mail.debrandstudio.it
-      SMTP_PORT: 465
-      SMTP_USER: info@debrandstudio.it
-      SMTP_PASS: M@ss1n078
-      SMTP_SECURE: ssl
-      SMTP_FROM: info@debrandstudio.it
-      SMTP_NAME: Zone14
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_SECURE: ${SMTP_SECURE}
+      SMTP_FROM: ${SMTP_FROM}
+      SMTP_NAME: ${SMTP_NAME}
 
     volumes:
       - ./backend/wordpress:/app/public
@@ -55,18 +55,18 @@ services:
     build:
       context: ./frontend
       args:
-        NEXT_PUBLIC_WORDPRESS_API_URL: https://www.debrandstudio.it/graphql
+        NEXT_PUBLIC_WORDPRESS_API_URL: ${NEXT_PUBLIC_WORDPRESS_API_URL}
     container_name: debrand_frontend_www
     environment:
-      - NEXT_PUBLIC_WORDPRESS_API_URL=https://www.debrandstudio.it/graphql
+      - NEXT_PUBLIC_WORDPRESS_API_URL=${NEXT_PUBLIC_WORDPRESS_API_URL}
       - WORDPRESS_API_URL_INTERNAL=http://debrand_backend_www:80/graphql
-      - MAIL_HOST=mail.debrandstudio.it
-      - MAIL_PORT=465
-      - MAIL_USERNAME=info@debrandstudio.it
-      - MAIL_PASSWORD=M@ss1n078
-      - MAIL_ENCRYPTION=ssl
-      - MAIL_FROM_ADDRESS=info@debrandstudio.it
-      - MAIL_FROM_NAME=DeBrand Studio
+      - MAIL_HOST=${SMTP_HOST}
+      - MAIL_PORT=${SMTP_PORT}
+      - MAIL_USERNAME=${SMTP_USER}
+      - MAIL_PASSWORD=${SMTP_PASS}
+      - MAIL_ENCRYPTION=${SMTP_SECURE}
+      - MAIL_FROM_ADDRESS=${SMTP_FROM}
+      - MAIL_FROM_NAME=${SMTP_NAME}
     networks:
       - debrand_network
     ports:
