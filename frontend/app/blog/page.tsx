@@ -8,6 +8,7 @@ export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function BlogPage() {
     const posts = await getAllPosts();
+    console.log('BlogPage posts:', JSON.stringify(posts, null, 2));
 
     return (
         <div className="container mx-auto px-4 py-12">
