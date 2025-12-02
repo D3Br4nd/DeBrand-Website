@@ -1,6 +1,6 @@
 services:
   wordpress:
-    build: .
+    build: ./backend
     container_name: debrand_backend_www
     environment:
       # FrankenPHP Configuration
@@ -30,9 +30,9 @@ services:
       - NONCE_SALT=${NONCE_SALT}
 
     volumes:
-      - ./wordpress:/app/public
-      - ./mu-plugins:/app/public/wp-content/mu-plugins
-      - ./wp-config.php:/app/public/wp-config.php
+      - ./backend/wordpress:/app/public
+      - ./backend/mu-plugins:/app/public/wp-content/mu-plugins
+      - ./backend/wp-config.php:/app/public/wp-config.php
     networks:
       - debrand_network
     restart: unless-stopped
