@@ -4,7 +4,8 @@ import { getAllPosts } from "@/lib/graphql";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const dynamic = 'force-dynamic';
+// export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function BlogPage() {
     const posts = await getAllPosts();
