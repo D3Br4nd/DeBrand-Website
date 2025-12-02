@@ -20,6 +20,9 @@ services:
       # Redis Configuration (if using a plugin like Redis Object Cache)
       - WP_REDIS_HOST=${REDIS_HOST}
       - WP_REDIS_PORT=${REDIS_PORT:-6379}
+      - WP_REDIS_DATABASE=${REDIS_DATABASE:-0}
+      - WP_REDIS_HOST=${REDIS_HOST}
+      - WP_REDIS_PORT=${REDIS_PORT:-6379}
 
       # Salts and Keys (Should be set in .env)
       - AUTH_KEY=${AUTH_KEY}
