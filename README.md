@@ -92,17 +92,26 @@ To work on the frontend code:
   - `Caddyfile`: Caddy web server configuration.
   - `php.ini`: Custom PHP configuration.
 
-## File Permissions (Important)
+## Manual WordPress Installation / Upgrade
 
-When Docker creates the `backend/wordpress` directory on the first run, it is often owned by `root` (or `www-data` inside the container). This can prevent you from editing files or installing plugins locally.
+If you need to manually install or upgrade WordPress (e.g., to use the Italian version), follow these steps:
 
-To fix the ownership of the files so you can edit them, run the following command in the project root:
+1.  **Download WordPress**:
+    Download the latest version from the official Italian site:
+    [https://it.wordpress.org/download/#:~:text=Scarica%20WordPress%206.8.3](https://it.wordpress.org/download/#:~:text=Scarica%20WordPress%206.8.3)
 
-```bash
-sudo chown -R $USER:$USER backend/wordpress backend/mu-plugins
-```
+2.  **Extract Files**:
+    Extract the contents of the downloaded zip file into the `backend/wordpress` directory.
+    Ensure the files are directly in `backend/wordpress` (e.g., `backend/wordpress/index.php`), not in a subdirectory like `backend/wordpress/wordpress`.
 
-If you are using the new `frankenwp` based setup, the container runs as `www-data`. If you encounter permission issues, you can ensure your user owns the files locally as shown above.
+3.  **Fix Permissions**:
+    After extracting, you must ensure the permissions are correct so the web server can read/write them and you can edit them locally. Run this command from the project root:
+
+    ```bash
+    sudo chown -R $USER:$USER backend/wordpress backend/mu-plugins
+    ```
+
+    *Note: The container runs as `www-data`, but mapping the volume with your user ownership usually works fine for development. If the container complains about permissions, you might need to make them writable by others or adjust the container user.*
 
 ## Testing
 
