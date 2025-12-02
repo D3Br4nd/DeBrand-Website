@@ -80,13 +80,29 @@ To work on the frontend code:
 
 ## Project Structure
 
-- **`docker-compose.yml`**: Defines the Docker services for the application, primarily the WordPress backend.
+- **`docker-compose.yml`**: Defines the Docker services for the application.
 - **`frontend/`**: Contains the Next.js application source code.
   - `app/`: App Router pages and layouts.
   - `components/`: Reusable React components.
   - `public/`: Static assets.
-- **`wp-content/`**: Mapped volume for WordPress content (plugins, themes, uploads).
-- **`Dockerfile`**: Custom image definition for the WordPress/FrankenPHP service.
+- **`backend/`**: Contains the WordPress backend configuration and source.
+  - `wordpress/`: Mapped volume for WordPress core and content.
+  - `mu-plugins/`: Must-Use plugins.
+  - `Dockerfile`: Custom image definition for the WordPress/FrankenPHP service.
+  - `Caddyfile`: Caddy web server configuration.
+  - `php.ini`: Custom PHP configuration.
+
+## File Permissions (Important)
+
+When Docker creates the `backend/wordpress` directory on the first run, it is often owned by `root` (or `www-data` inside the container). This can prevent you from editing files or installing plugins locally.
+
+To fix the ownership of the files so you can edit them, run the following command in the project root:
+
+```bash
+sudo chown -R $USER:$USER backend/wordpress backend/mu-plugins
+```
+
+If you are using the new `frankenwp` based setup, the container runs as `www-data`. If you encounter permission issues, you can ensure your user owns the files locally as shown above.
 
 ## Testing
 
