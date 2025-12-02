@@ -47,6 +47,8 @@ $RECYCLE.BIN/
 
 # WordPress
 wordpress/
+backend/wordpress/
+backend/mu-plugins/*/
 
 # Logs
 *.log

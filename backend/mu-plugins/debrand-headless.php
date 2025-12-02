@@ -44,7 +44,14 @@ add_action('template_redirect', function () {
  * Enable CORS for GraphQL
  */
 add_action('init', function () {
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
-    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    // Prevent headers error during WP-CLI execution
+    if ( defined( 'WP_CLI' ) && WP_CLI ) {
+        return;
+    }
+    
+    if ( ! headers_sent() ) {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    }
 });
