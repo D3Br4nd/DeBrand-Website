@@ -5,7 +5,7 @@ const endpoint = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'http://localhost:
 export const client = new GraphQLClient(endpoint);
 
 export async function getSeoMetadata(uri: string) {
-    const query = `
+  const query = `
     query GetSeoMetadata($uri: String!) {
       nodeByUri(uri: $uri) {
         ... on Page {
@@ -34,11 +34,46 @@ export async function getSeoMetadata(uri: string) {
     }
   `;
 
-    try {
-        const data: any = await client.request(query, { uri });
-        return data?.nodeByUri?.seo;
-    } catch (error) {
-        console.error('Error fetching SEO metadata:', error);
-        return null;
+  try {
+    const data: any = await client.request(query, { uri });
+    return data?.nodeByUri?.seo;
+  } catch (error) {
+    console.error('Error fetching SEO metadata:', error);
+    return null;
+  }
+}
+
+export async function getAllPosts() {
+  const query = `
+    query GetAllPosts {
+      posts(first: 20, where: { orderby: { field: DATE, order: DESC } }) {
+        nodes {
+          id
+          title
+          slug
+          date
+          excerpt
+          featuredImage {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+          author {
+            node {
+              name
+            }
+          }
+        }
+      }
     }
+  `;
+
+  try {
+    const data: any = await client.request(query);
+    return data?.posts?.nodes || [];
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    return [];
+  }
 }

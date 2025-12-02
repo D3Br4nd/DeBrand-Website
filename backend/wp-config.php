@@ -28,6 +28,7 @@ $table_prefix = getenv('WORDPRESS_TABLE_PREFIX') ?: 'wp_';
 define( 'WP_DEBUG', !!getenv('WORDPRESS_DEBUG') );
 define( 'WP_DEBUG_DISPLAY', false );
 @ini_set( 'display_errors', 0 );
+define( 'FS_METHOD', 'direct' );
 
 // ** SSL Fix for Reverse Proxy ** //
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
@@ -53,6 +54,11 @@ if (getenv('WP_REDIS_HOST')) {
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
 define( 'ABSPATH', __DIR__ . '/' );
+}
+
+/** Enables page caching for Cache Enabler. */
+if ( ! defined( 'WP_CACHE' ) ) {
+	define( 'WP_CACHE', true );
 }
 
 /** Sets up WordPress vars and included files. */
