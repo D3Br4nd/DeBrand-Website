@@ -1,6 +1,8 @@
 import { GraphQLClient } from 'graphql-request';
 
-const endpoint = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'http://localhost:8080/graphql';
+const endpoint = (typeof window === 'undefined' && process.env.WORDPRESS_API_URL_INTERNAL)
+  ? process.env.WORDPRESS_API_URL_INTERNAL
+  : (process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'http://localhost:8080/graphql');
 
 export const client = new GraphQLClient(endpoint);
 
