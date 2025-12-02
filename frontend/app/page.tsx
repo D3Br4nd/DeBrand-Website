@@ -29,7 +29,7 @@ export default function Home() {
       {/* Services Highlight (Bento Grid) */}
       <section className="container px-4">
         <h2 className="text-3xl font-bold text-center mb-12">I Nostri Core Services</h2>
-        <BentoGrid className="max-w-4xl mx-auto">
+        <BentoGrid className="max-w-4xl mx-auto md:grid-cols-2">
           {items.map((item, i) => (
             <BentoGridItem
               key={i}
@@ -37,7 +37,7 @@ export default function Home() {
               description={item.description}
               header={item.header}
               icon={item.icon}
-              className={i === 3 || i === 6 ? "md:col-span-2" : ""}
+              className=""
             />
           ))}
         </BentoGrid>

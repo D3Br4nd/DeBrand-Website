@@ -1,5 +1,7 @@
 "use client";
 
+import { sendContactEmail } from "@/lib/graphql";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,32 +12,37 @@ import { useState } from "react";
 export default function Contact() {
     const [loading, setLoading] = useState(false);
     const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setLoading(true);
         setStatus('idle');
+        setErrorMessage('');
 
         const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData.entries());
+        const data = {
+            name: formData.get('name') as string,
+            email: formData.get('email') as string,
+            company: formData.get('company') as string,
+            message: formData.get('message') as string,
+        };
 
         try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
+            const result = await sendContactEmail(data);
 
-            if (response.ok) {
+            if (result?.success) {
                 setStatus('success');
                 (e.target as HTMLFormElement).reset();
             } else {
+                console.error('Submission error:', result?.message);
                 setStatus('error');
+                setErrorMessage(result?.message || 'Errore sconosciuto.');
             }
         } catch (error) {
+            console.error('Submission exception:', error);
             setStatus('error');
+            setErrorMessage('Errore di connessione. Riprova più tardi.');
         } finally {
             setLoading(false);
         }
@@ -105,7 +112,9 @@ export default function Contact() {
                                 <p className="text-green-600 text-sm text-center">Messaggio inviato con successo!</p>
                             )}
                             {status === 'error' && (
-                                <p className="text-red-600 text-sm text-center">Errore durante l'invio. Riprova.</p>
+                                <p className="text-red-600 text-sm text-center">
+                                    {errorMessage || "Errore durante l'invio. Riprova."}
+                                </p>
                             )}
                         </form>
                     </CardContent>

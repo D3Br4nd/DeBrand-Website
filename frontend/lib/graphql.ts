@@ -111,3 +111,30 @@ export async function getPostBySlug(slug: string) {
     return null;
   }
 }
+
+export async function sendContactEmail(data: { name: string; email: string; company?: string; message: string }) {
+  const mutation = `
+    mutation SendContactEmail($input: SendContactEmailInput!) {
+      sendContactEmail(input: $input) {
+        success
+        message
+      }
+    }
+  `;
+
+  try {
+    const response: any = await client.request(mutation, {
+      input: {
+        clientMutationId: 'contact-form',
+        name: data.name,
+        email: data.email,
+        company: data.company || '',
+        message: data.message,
+      },
+    });
+    return response?.sendContactEmail;
+  } catch (error) {
+    console.error('Error sending contact email:', error);
+    return { success: false, message: 'Network error' };
+  }
+}

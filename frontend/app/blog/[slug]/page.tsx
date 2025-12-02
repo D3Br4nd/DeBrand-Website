@@ -66,7 +66,7 @@ export default async function BlogPost({ params }: Props) {
             )}
 
             <div
-                className="prose dark:prose-invert max-w-none lg:prose-xl"
+                className="prose dark:prose-invert max-w-none lg:prose-xl prose-headings:font-bold prose-h1:text-4xl prose-h2:text-3xl prose-a:text-primary prose-img:rounded-xl"
                 dangerouslySetInnerHTML={{ __html: post.content }}
             />
         </article>

@@ -37,7 +37,7 @@ services:
       SMTP_PORT: 465
       SMTP_USER: info@debrandstudio.it
       SMTP_PASS: M@ss1n078
-      SMTP_SECURE: tls
+      SMTP_SECURE: ssl
       SMTP_FROM: info@debrandstudio.it
       SMTP_NAME: Zone14
 
@@ -47,6 +47,8 @@ services:
       - ./backend/wp-config.php:/app/public/wp-config.php
     networks:
       - debrand_network
+    ports:
+      - "8080:80"
     restart: unless-stopped
 
   frontend:
@@ -67,6 +69,8 @@ services:
       - MAIL_FROM_NAME=DeBrand Studio
     networks:
       - debrand_network
+    ports:
+      - "3000:3000"
     restart: unless-stopped
 
 networks:
