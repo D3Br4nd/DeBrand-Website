@@ -1,5 +1,10 @@
 # DeBrand Website
 
+<div align="center">
+  <img src="assets/logo-1.png" alt="Logo 1" width="200" />
+  <img src="assets/logo-2.png" alt="Logo 2" width="200" />
+</div>
+
 This repository contains the source code for the DeBrand Studio website. It is a modern web application built with a **Next.js** frontend and a **Headless WordPress** backend powered by **FrankenPHP**.
 
 ## Project Overview
