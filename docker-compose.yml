@@ -1,6 +1,6 @@
 services:
   wordpress:
-    image: dunglas/frankenphp:latest-php8.3-alpine
+    image: dunglas/frankenphp:latest
     container_name: debrand_backend_www
     environment:
       # --- FRANKENPHP CONFIG (Sintassi Map per sicurezza spazi) ---
