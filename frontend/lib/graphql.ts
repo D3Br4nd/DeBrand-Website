@@ -98,10 +98,6 @@ export async function getPostBySlug(slug: string) {
             name
           }
         }
-        seo {
-          title
-          metaDesc
-        }
       }
     }
   `;

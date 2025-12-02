@@ -88,25 +88,25 @@ const items = [
   {
     title: "Sviluppo Web & Mobile",
     description: "Realizziamo applicazioni web complesse, portali enterprise e soluzioni e-commerce headless progettate per la velocità e la scalabilità.",
-    header: <Skeleton />,
-    icon: <Code className="h-4 w-4 text-neutral-500" />,
+    header: <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center"><Code className="w-16 h-16 text-primary/40" /></div>,
+    icon: <Code className="h-4 w-4" />,
   },
   {
     title: "Cloud & DevOps",
     description: "Accompagniamo la tua infrastruttura nel Cloud. Containerizzazione, orchestrazione e gestione server per garantire sicurezza e continuità operativa.",
-    header: <Skeleton />,
-    icon: <Cloud className="h-4 w-4 text-neutral-500" />,
+    header: <div className="w-full h-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center"><Cloud className="w-16 h-16 text-primary/40" /></div>,
+    icon: <Cloud className="h-4 w-4" />,
   },
   {
     title: "AI & Chatbot RAG",
     description: "Sfrutta i tuoi dati aziendali con l'Intelligenza Artificiale. Creiamo assistenti virtuali avanzati e sistemi RAG per risposte precise e contestualizzate.",
-    header: <Skeleton />,
-    icon: <Bot className="h-4 w-4 text-neutral-500" />,
+    header: <div className="w-full h-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center"><Bot className="w-16 h-16 text-primary/40" /></div>,
+    icon: <Bot className="h-4 w-4" />,
   },
   {
     title: "Consulenza IT",
     description: "Non solo codice. Ti guidiamo nelle scelte tecnologiche strategiche per ottimizzare i costi e innovare il tuo modello di business.",
-    header: <Skeleton />,
-    icon: <Terminal className="h-4 w-4 text-neutral-500" />,
+    header: <div className="w-full h-full bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center"><Terminal className="w-16 h-16 text-primary/40" /></div>,
+    icon: <Terminal className="h-4 w-4" />,
   },
 ];

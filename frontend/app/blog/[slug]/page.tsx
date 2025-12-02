@@ -27,9 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPost({ params }: Props) {
+    console.log('Fetching post for slug:', params.slug);
     const post = await getPostBySlug(params.slug);
+    console.log('Post result:', post ? 'Found' : 'Not Found');
 
     if (!post) {
+        console.log('Post not found, triggering notFound()');
         notFound();
     }
 

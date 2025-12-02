@@ -8,7 +8,7 @@ export async function POST(request: Request) {
         const transporter = nodemailer.createTransport({
             host: process.env.MAIL_HOST,
             port: Number(process.env.MAIL_PORT),
-            secure: process.env.MAIL_ENCRYPTION === 'ssl', // true for 465, false for other ports
+            secure: true, // Port 465 requires secure: true
             auth: {
                 user: process.env.MAIL_USERNAME,
                 pass: process.env.MAIL_PASSWORD,
@@ -39,11 +39,13 @@ export async function POST(request: Request) {
       `,
         };
 
-        await transporter.sendMail(mailOptions);
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Message sent: %s', info.messageId);
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
         return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
     } catch (error) {
         console.error('Error sending email:', error);
-        return NextResponse.json({ message: 'Error sending email' }, { status: 500 });
+        return NextResponse.json({ message: 'Error sending email', error: String(error) }, { status: 500 });
     }
 }
