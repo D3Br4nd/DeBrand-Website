@@ -126,13 +126,16 @@ If you need to manually install or upgrade WordPress (e.g., to use the Italian v
     # 1. Assegna proprietario (utente 82 = www-data su Alpine) a tutto il path
     docker exec -u 0 debrand_backend_www chown -R 82:82 /app/public
 
+    # Oppure
+
+    sudo chown -R 82:82 mu-plugins wordpress wp-config.php
+
     # 2. Permessi Cartelle a 755
     docker exec -u 0 debrand_backend_www find /app/public -type d -exec chmod 755 {} +
 
     # 3. Permessi File a 644
     docker exec -u 0 debrand_backend_www find /app/public -type f -exec chmod 644 {} +
 
-    sudo chown -R $USER:$USER backend/wordpress backend/mu-plugins
     ```
 
     *Note: The container runs as `www-data`, but mapping the volume with your user ownership usually works fine for development. If the container complains about permissions, you might need to make them writable by others or adjust the container user.*
