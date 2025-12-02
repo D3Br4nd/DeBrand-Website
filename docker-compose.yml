@@ -1,11 +1,11 @@
 services:
   wordpress:
-    image: dunglas/frankenphp:latest
+    build: ./backend
     container_name: debrand_backend_www
     environment:
       # --- FRANKENPHP CONFIG (Sintassi Map per sicurezza spazi) ---
       SERVER_NAME: ":80"
-      FRANKENPHP_CONFIG: "worker ./index.php"
+      # FRANKENPHP_CONFIG: "worker ./public/index.php"
       MAX_REQUESTS: "500"
       TRUSTED_PROXIES: "127.0.0.1,172.16.0.0/12,10.0.0.0/8"
 
