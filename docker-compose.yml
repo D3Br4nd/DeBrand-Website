@@ -5,6 +5,7 @@ services:
     environment:
       # FrankenPHP Configuration
       - FRANKENPHP_CONFIG=worker ./public/index.php
+      - SERVER_NAME=:80
 
       # WordPress Configuration
       - WORDPRESS_DB_HOST=${DB_HOST}
