@@ -46,9 +46,7 @@ $RECYCLE.BIN/
 *.swo
 
 # WordPress
-wp-content/uploads/
-wp-content/cache/
-wp-content/debug.log
+wordpress/
 
 # Logs
 *.log
