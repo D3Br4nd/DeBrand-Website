@@ -4,7 +4,7 @@ services:
     container_name: debrand_backend_www
     environment:
       # FrankenPHP Configuration
-      - FRANKENPHP_CONFIG=worker ./public/index.php
+      # - FRANKENPHP_CONFIG=worker ./public/index.php
       - SERVER_NAME=:80
 
       # WordPress Configuration
