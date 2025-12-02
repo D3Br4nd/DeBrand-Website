@@ -98,7 +98,7 @@ If you need to manually install or upgrade WordPress (e.g., to use the Italian v
 
 1.  **Download WordPress**:
     Download the latest version from the official Italian site:
-    [https://it.wordpress.org/download/#:~:text=Scarica%20WordPress%206.8.3](https://it.wordpress.org/download/#:~:text=Scarica%20WordPress%206.8.3)
+    [https://wordpress.org/latest.tar.gz](https://wordpress.org/latest.tar.gz)
 
 2.  **Extract Files**:
     Extract the contents of the downloaded zip file into the `backend/wordpress` directory.
@@ -108,6 +108,30 @@ If you need to manually install or upgrade WordPress (e.g., to use the Italian v
     After extracting, you must ensure the permissions are correct so the web server can read/write them and you can edit them locally. Run this command from the project root:
 
     ```bash
+    # Entra nella cartella backend
+    cd backend
+
+    # Scarica WP
+    curl -O https://wordpress.org/latest.tar.gz
+
+    # Estrai e sposta i file nella cartella 'wordpress' che hai mappato
+    # (Assumendo che ./backend/wordpress esista già, altrimenti mkdir)
+    tar -zxf latest.tar.gz
+    # Ora avrai una cartella 'wordpress' creata dal tar. 
+    # Se la tua struttura era diversa, aggiusta i path.
+
+    # Pulizia
+    rm latest.tar.gz
+
+    # 1. Assegna proprietario (utente 82 = www-data su Alpine) a tutto il path
+    docker exec -u 0 debrand_backend_www chown -R 82:82 /app/public
+
+    # 2. Permessi Cartelle a 755
+    docker exec -u 0 debrand_backend_www find /app/public -type d -exec chmod 755 {} +
+
+    # 3. Permessi File a 644
+    docker exec -u 0 debrand_backend_www find /app/public -type f -exec chmod 644 {} +
+
     sudo chown -R $USER:$USER backend/wordpress backend/mu-plugins
     ```
 
