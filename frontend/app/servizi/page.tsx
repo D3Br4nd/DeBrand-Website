@@ -8,7 +8,7 @@ export default function Services() {
             <div className="text-center max-w-3xl mx-auto mb-16">
                 <h1 className="text-4xl font-bold tracking-tight mb-4">I Nostri Servizi</h1>
                 <p className="text-xl text-muted-foreground">
-                    Soluzioni tecnologiche avanzate per ogni esigenza di business.
+                    Dall&apos;idea al deploy, e oltre. Offriamo un ciclo completo di sviluppo software.
                 </p>
             </div>
 
@@ -39,7 +39,7 @@ export default function Services() {
 const services = [
     {
         title: "Sviluppo Web & Mobile",
-        description: "Creiamo esperienze digitali veloci, accessibili e coinvolgenti.",
+        description: "Utilizziamo architetture moderne come Headless CMS e Frontend reattivi (Next.js) per garantire prestazioni SEO eccellenti e una User Experience fluida.",
         features: [
             "Siti Web Headless (Next.js, WordPress)",
             "Applicazioni Web Progressive (PWA)",
@@ -58,8 +58,8 @@ const services = [
         ],
     },
     {
-        title: "Artificial Intelligence",
-        description: "Sfrutta la potenza dell'AI per automatizzare e innovare.",
+        title: "AI & Chatbot RAG",
+        description: "L'intelligenza artificiale non è più il futuro, è il presente. Sviluppiamo soluzioni basate su LLM (Large Language Models) e RAG (Retrieval Augmented Generation) che permettono ai chatbot di rispondere attingendo direttamente alla tua knowledge base aziendale, garantendo precisione e riducendo le allucinazioni.",
         features: [
             "RAG (Retrieval Augmented Generation)",
             "Chatbot intelligenti e Assistenti Virtuali",

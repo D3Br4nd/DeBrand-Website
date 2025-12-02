@@ -9,12 +9,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center text-center pt-32 pb-20 px-4">
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter max-w-4xl mb-6">
-          Sviluppo web su misura, <br />
-          <span className="text-primary">Cloud Native</span> e <span className="text-primary">AI</span>
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter max-w-5xl mb-6">
+          Sviluppo Web, Architetture Cloud e <br />
+          <span className="text-primary">Intelligenza Artificiale</span> su misura.
         </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mb-8">
-          Trasformiamo le tue sfide digitali in opportunità concrete.
+        <p className="text-xl text-muted-foreground max-w-3xl mb-8">
+          DeBrand Studio è la tech company che trasforma le tue sfide digitali in opportunità. Progettiamo soluzioni web performanti, modernizziamo sistemi legacy e integriamo l&apos;AI nei tuoi processi aziendali.
         </p>
         <div className="flex gap-4">
           <Button size="lg" className="text-lg px-8" asChild>
@@ -28,7 +28,7 @@ export default function Home() {
 
       {/* Services Highlight (Bento Grid) */}
       <section className="container px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">I Nostri Servizi</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">I Nostri Core Services</h2>
         <BentoGrid className="max-w-4xl mx-auto">
           {items.map((item, i) => (
             <BentoGridItem
@@ -45,16 +45,35 @@ export default function Home() {
 
       {/* Why Us */}
       <section className="container px-4 py-20 bg-muted/50 rounded-3xl">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Perché DeBrand Studio?</h2>
-          <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-            Crediamo in un <strong>Approccio Tailor-made</strong>. Non offriamo soluzioni preconfezionate, ma costruiamo software che si adatta perfettamente ai tuoi processi. La nostra ossessione per l'<strong>Innovazione Continua</strong> ci spinge a integrare le tecnologie più recenti, come l'AI generativa e le architetture serverless, per garantirti un vantaggio competitivo duraturo.
-          </p>
-          <Button variant="link" className="text-primary text-lg" asChild>
-            <Link href="/chi-siamo" className="flex items-center gap-2">
-              Scopri chi siamo <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-10 text-center">Perché sceglierci</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold">Approccio Tailor-Made</h3>
+              <p className="text-muted-foreground">
+                Non vendiamo pacchetti standard. Ogni riga di codice è scritta per risolvere le tue specifiche esigenze.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold">Focus sull&apos;Innovazione</h3>
+              <p className="text-muted-foreground">
+                Dalle architetture headless ai modelli LLM, portiamo lo stato dell&apos;arte della tecnologia nella tua azienda.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold">Concretezza</h3>
+              <p className="text-muted-foreground">
+                Parliamo la tua lingua. Riduciamo la complessità tecnica per concentrarci sui risultati di business.
+              </p>
+            </div>
+          </div>
+          <div className="mt-12 text-center">
+            <Button variant="link" className="text-primary text-lg" asChild>
+              <Link href="/chi-siamo" className="flex items-center gap-2">
+                Scopri chi siamo <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>
@@ -67,26 +86,26 @@ const Skeleton = () => (
 
 const items = [
   {
-    title: "Sviluppo Web",
-    description: "Siti performanti e applicazioni web complesse con Next.js e React.",
+    title: "Sviluppo Web & Mobile",
+    description: "Realizziamo applicazioni web complesse, portali enterprise e soluzioni e-commerce headless progettate per la velocità e la scalabilità.",
     header: <Skeleton />,
     icon: <Code className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "Cloud Consulting",
-    description: "Migrazione e ottimizzazione su AWS, Google Cloud e Azure.",
+    title: "Cloud & DevOps",
+    description: "Accompagniamo la tua infrastruttura nel Cloud. Containerizzazione, orchestrazione e gestione server per garantire sicurezza e continuità operativa.",
     header: <Skeleton />,
     icon: <Cloud className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "AI & Chatbot",
-    description: "Soluzioni RAG e assistenti virtuali intelligenti per il tuo business.",
+    title: "AI & Chatbot RAG",
+    description: "Sfrutta i tuoi dati aziendali con l'Intelligenza Artificiale. Creiamo assistenti virtuali avanzati e sistemi RAG per risposte precise e contestualizzate.",
     header: <Skeleton />,
     icon: <Bot className="h-4 w-4 text-neutral-500" />,
   },
   {
     title: "Consulenza IT",
-    description: "Analisi strategica e modernizzazione di infrastrutture legacy.",
+    description: "Non solo codice. Ti guidiamo nelle scelte tecnologiche strategiche per ottimizzare i costi e innovare il tuo modello di business.",
     header: <Skeleton />,
     icon: <Terminal className="h-4 w-4 text-neutral-500" />,
   },
