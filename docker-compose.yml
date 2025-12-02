@@ -1,0 +1,42 @@
+services:
+  wordpress:
+    build: .
+    image: debrand-wordpress:latest
+    container_name: wordpress
+    ports:
+      - "8080:80"
+    environment:
+      # FrankenPHP Configuration
+      - FRANKENPHP_CONFIG=worker ./public/index.php
+
+      # WordPress Configuration
+      - WORDPRESS_DB_HOST=${DB_HOST}
+      - WORDPRESS_DB_USER=${DB_USER}
+      - WORDPRESS_DB_PASSWORD=${DB_PASSWORD}
+      - WORDPRESS_DB_NAME=${DB_NAME}
+      - WORDPRESS_TABLE_PREFIX=${DB_PREFIX:-wp_}
+      - WORDPRESS_DEBUG=${WP_DEBUG:-false}
+
+      # Redis Configuration (if using a plugin like Redis Object Cache)
+      - WP_REDIS_HOST=${REDIS_HOST}
+      - WP_REDIS_PORT=${REDIS_PORT:-6379}
+
+      # Salts and Keys (Should be set in .env)
+      - AUTH_KEY=${AUTH_KEY}
+      - SECURE_AUTH_KEY=${SECURE_AUTH_KEY}
+      - LOGGED_IN_KEY=${LOGGED_IN_KEY}
+      - NONCE_KEY=${NONCE_KEY}
+      - AUTH_SALT=${AUTH_SALT}
+      - SECURE_AUTH_SALT=${SECURE_AUTH_SALT}
+      - LOGGED_IN_SALT=${LOGGED_IN_SALT}
+      - NONCE_SALT=${NONCE_SALT}
+
+    volumes:
+      - ./wp-content:/app/public/wp-content
+    networks:
+      - debrand_network
+    restart: unless-stopped
+
+networks:
+  debrand_network:
+    external: true
