@@ -34,7 +34,7 @@ services:
 
     volumes:
       - ./backend/wordpress:/app/public
-      - ./backend/mu-plugins:/app/public/wp-content/mu-plugins
+      - ./backend/mu-plugins:/app/public/wp-content/plugins
       - ./backend/wp-config.php:/app/public/wp-config.php
     networks:
       - debrand_network

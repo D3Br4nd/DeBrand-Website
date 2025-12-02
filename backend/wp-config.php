@@ -26,6 +26,8 @@ $table_prefix = getenv('WORDPRESS_TABLE_PREFIX') ?: 'wp_';
 
 // ** Debugging mode ** //
 define( 'WP_DEBUG', !!getenv('WORDPRESS_DEBUG') );
+define( 'WP_DEBUG_DISPLAY', false );
+@ini_set( 'display_errors', 0 );
 
 // ** SSL Fix for Reverse Proxy ** //
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
