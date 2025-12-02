@@ -47,8 +47,6 @@ services:
       - ./backend/wp-config.php:/app/public/wp-config.php
     networks:
       - debrand_network
-    ports:
-      - "8080:80"
     restart: unless-stopped
 
   frontend:
@@ -69,8 +67,6 @@ services:
       - MAIL_FROM_NAME=${SMTP_NAME}
     networks:
       - debrand_network
-    ports:
-      - "3000:3000"
     restart: unless-stopped
 
 networks:
