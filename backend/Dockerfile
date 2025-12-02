@@ -9,7 +9,8 @@ RUN install-php-extensions \
     mysqli \
     zip \
     opcache \
-    redis
+    redis \
+    imagick
 
 # Install WP-CLI
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
