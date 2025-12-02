@@ -4,8 +4,6 @@ const endpoint = (typeof window === 'undefined' && process.env.WORDPRESS_API_URL
   ? process.env.WORDPRESS_API_URL_INTERNAL
   : (process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'http://localhost:8080/graphql');
 
-console.log('GraphQL Client Endpoint:', endpoint);
-
 export const client = new GraphQLClient(endpoint);
 
 export async function getSeoMetadata(uri: string) {

@@ -48,7 +48,7 @@ services:
     container_name: debrand_frontend_www
     environment:
       - NEXT_PUBLIC_WORDPRESS_API_URL=https://www.debrandstudio.it/graphql
-      - WORDPRESS_API_URL_INTERNAL=http://wordpress:80/graphql
+      - WORDPRESS_API_URL_INTERNAL=http://debrand_backend_www:80/graphql
     networks:
       - debrand_network
     restart: unless-stopped
