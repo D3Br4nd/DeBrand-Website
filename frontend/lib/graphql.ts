@@ -79,3 +79,38 @@ export async function getAllPosts() {
     return [];
   }
 }
+
+export async function getPostBySlug(slug: string) {
+  const query = `
+    query GetPostBySlug($slug: ID!) {
+      post(id: $slug, idType: SLUG) {
+        title
+        content
+        date
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        author {
+          node {
+            name
+          }
+        }
+        seo {
+          title
+          metaDesc
+        }
+      }
+    }
+  `;
+
+  try {
+    const data: any = await client.request(query, { slug });
+    return data?.post;
+  } catch (error) {
+    console.error('Error fetching post:', error);
+    return null;
+  }
+}

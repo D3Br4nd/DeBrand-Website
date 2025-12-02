@@ -6,12 +6,15 @@ export function Footer() {
             <div className="container mx-auto px-4 flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
                 <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
                     <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-                        &copy; 2024 DeBrand Studio. P.IVA [Inserire P.IVA]. Sviluppo Web, Cloud & AI Solutions.
+                        &copy; 2024 DeBrand Studio. P.IVA 03013500644. Tel: 3474854512.
                     </p>
                 </div>
                 <div className="flex gap-4">
-                    <Link href="#" className="text-sm text-muted-foreground hover:text-primary">Privacy Policy</Link>
-                    <Link href="#" className="text-sm text-muted-foreground hover:text-primary">Terms of Service</Link>
+                    <Link href="https://www.facebook.com/MaxBrandini78" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary">Facebook</Link>
+                    <Link href="https://www.linkedin.com/in/cesare-brandini/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary">LinkedIn</Link>
+                    <Link href="https://x.com/BrandiniMax" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary">X</Link>
+                    <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary">Privacy</Link>
+                    <Link href="/cookie-policy" className="text-sm text-muted-foreground hover:text-primary">Cookie</Link>
                 </div>
             </div>
         </footer>

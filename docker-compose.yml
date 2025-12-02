@@ -32,6 +32,15 @@ services:
       LOGGED_IN_SALT: ${LOGGED_IN_SALT}
       NONCE_SALT: ${NONCE_SALT}
 
+      # --- SMTP CONFIG ---
+      SMTP_HOST: mail.debrandstudio.it
+      SMTP_PORT: 465
+      SMTP_USER: info@debrandstudio.it
+      SMTP_PASS: M@ss1n078
+      SMTP_SECURE: tls
+      SMTP_FROM: info@debrandstudio.it
+      SMTP_NAME: Zone14
+
     volumes:
       - ./backend/wordpress:/app/public
       - ./backend/mu-plugins:/app/public/wp-content/plugins
@@ -49,6 +58,13 @@ services:
     environment:
       - NEXT_PUBLIC_WORDPRESS_API_URL=https://www.debrandstudio.it/graphql
       - WORDPRESS_API_URL_INTERNAL=http://debrand_backend_www:80/graphql
+      - MAIL_HOST=mail.debrandstudio.it
+      - MAIL_PORT=465
+      - MAIL_USERNAME=info@debrandstudio.it
+      - MAIL_PASSWORD=M@ss1n078
+      - MAIL_ENCRYPTION=tls
+      - MAIL_FROM_ADDRESS=info@debrandstudio.it
+      - MAIL_FROM_NAME=Zone14
     networks:
       - debrand_network
     restart: unless-stopped
